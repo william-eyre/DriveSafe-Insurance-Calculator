@@ -4,8 +4,6 @@ import models.AgeRangeModel;
 import models.InsuranceTypeModel;
 import models.PersonModel;
 
-import java.text.DecimalFormat;
-import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,7 +18,6 @@ public class Calculations implements CalculationsInterface {
 
     private double coverTypePrice;
     private double driversAgePrice;
-    NumberFormat formatter = new DecimalFormat("#0.00");
 
     private double coverTypeCalculations(String coverType) {
         List<InsuranceTypeModel> typeModels = new ArrayList<>();
@@ -46,8 +43,7 @@ public class Calculations implements CalculationsInterface {
 
         for (AgeRangeModel band : ageBands) {
             if (band.includes(driversAge)) {
-                driversAgePrice = coverTypePrice + (coverTypePrice / 100 * band.getPercentageAdjustment());
-                return driversAgePrice;
+                return driversAgePrice = band.ageIncrease(coverTypePrice);
             }
         }
         return driversAge;

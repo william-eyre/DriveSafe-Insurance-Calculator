@@ -12,14 +12,13 @@ public class AgeRangeModel {
         this.percentageAdjustment = percentageAdjustment;
     }
 
-
-    public double getPercentageAdjustment() {
-        return percentageAdjustment;
-    }
-
     public boolean includes(int age) {
         return age > lowerBound && age <= upperBound;
     }
 
+    public double ageIncrease(double newPrice) {
+        return newPrice + (newPrice / 100 * percentageAdjustment);
+
+    }
 
 }
