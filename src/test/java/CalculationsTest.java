@@ -23,6 +23,14 @@ public class CalculationsTest {
 
         Assert.assertEquals(person1.getQuote(), 436.8, 0);
     }
+    @Test
+    public void calculationsTest_25To35AgeRange() {
+        CalculationsInterface c = new Calculations();
+        PersonModel person1 = new PersonModel("Zatana", 30, 3, "Comprehensive");
+        c.calculate(person1);
+
+        Assert.assertEquals(person1.getQuote(), 403.2, 0);
+    }
 
 
 }

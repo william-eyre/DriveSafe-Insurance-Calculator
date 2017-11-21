@@ -23,7 +23,7 @@ public class Main {
 //        System.out.println("Please enter your years no claims");
 //        int yearsNoClaims = scanner.nextInt();
 
-        PersonModel person = new PersonModel("Will", 20, 3, "Comprehensive");
+        PersonModel person = new PersonModel("Will", 30, 3, "Comprehensive");
 
         System.out.println("Insurance Quote: " + c.calculate(person));
     }
