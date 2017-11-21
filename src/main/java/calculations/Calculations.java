@@ -4,6 +4,7 @@ import models.AgeRangeModel;
 import models.InsuranceTypeModel;
 import models.PersonModel;
 
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,13 +19,11 @@ public class Calculations implements CalculationsInterface {
      */
 
     private double basePremium = 300;
-
-    private double coverTypeIncreaseAmount;
-    private double driversAgeIncreaseAmount;
-    private double noClaimsDiscount;
-
     private double coverTypeTotal;
     private double driversAgeTotal;
+
+    private static DecimalFormat df2 = new DecimalFormat(".##");
+
 
     private double coverTypeCalculations(String coverType) {
         List<InsuranceTypeModel> typeModels = new ArrayList<>();
@@ -34,12 +33,8 @@ public class Calculations implements CalculationsInterface {
 
         for (InsuranceTypeModel type : typeModels) {
             if (type.getInsuranceType().equals(coverType)) {
-//                System.out.println("Cover type increase:");
-//                System.out.println(basePremium);
-//                System.out.println(coverTypeIncreaseAmount = type.coverTypeIncrease(basePremium));
-//                System.out.println(coverTypeTotal = basePremium + type.coverTypeIncrease(basePremium));
                 coverTypeTotal = basePremium + type.coverTypeIncrease(basePremium);
-                return coverTypeIncreaseAmount = type.coverTypeIncrease(basePremium);
+                return type.coverTypeIncrease(basePremium);
             }
         }
         return 0;
@@ -55,31 +50,25 @@ public class Calculations implements CalculationsInterface {
 
         for (AgeRangeModel band : ageBands) {
             if (band.includes(driversAge)) {
-//                System.out.println("age increase:");
-//                System.out.println(coverTypeTotal);
-//                System.out.println(driversAgeIncreaseAmount = band.ageIncrease(coverTypeTotal));
-//                System.out.println(driversAgeTotal = coverTypeTotal + band.ageIncrease(coverTypeTotal));
                 driversAgeTotal = coverTypeTotal + band.ageIncrease(coverTypeTotal);
-                return driversAgeIncreaseAmount = band.ageIncrease(coverTypeTotal);
+                return band.ageIncrease(coverTypeTotal);
             }
         }
         return driversAge;
     }
 
     private double noClaimsDiscount(int yearsNoClaims) {
-        int noClaimsBonus = yearsNoClaims * 7;
+        double noClaimsBonus = yearsNoClaims * 7;
         if (noClaimsBonus % 5 == 0) {
             if (noClaimsBonus >= 60) {
                 noClaimsBonus = 60;
-                return noClaimsDiscount = driversAgeIncreaseAmount / 100 * noClaimsBonus;
+                return driversAgeTotal / 100 * noClaimsBonus;
             }
         }
         else if (noClaimsBonus % 5 != 0) {
-            noClaimsBonus = (int) (5 * (Math.floor(noClaimsBonus / 5.0)));
-//            System.out.println("No claims discount:");
-//            System.out.println(driversAgeTotal);
-//            System.out.println(Math.floor(noClaimsDiscount = driversAgeTotal / 100 * noClaimsBonus));
-            return noClaimsDiscount = driversAgeTotal / 100 * noClaimsBonus;
+            noClaimsBonus = (5 * (Math.floor(noClaimsBonus / 5.0)));
+            double output = driversAgeTotal / 100 * noClaimsBonus;
+            return -output;
         }
         return noClaimsBonus;
     }
@@ -87,10 +76,12 @@ public class Calculations implements CalculationsInterface {
 
     @Override
     public double calculate(PersonModel person) {
-        return basePremium +
-        coverTypeCalculations(person.getInsuranceType()) +
-        driversAgeIncrease(person.getAge()) -
-        noClaimsDiscount(person.getYearsNoClaims());
+        double quote = basePremium +
+                coverTypeCalculations(person.getInsuranceType()) +
+                driversAgeIncrease(person.getAge()) +
+                noClaimsDiscount(person.getYearsNoClaims());
+        person.setQuote(quote);
+        return Double.parseDouble(df2.format(quote));
     }
 
 //    @Override

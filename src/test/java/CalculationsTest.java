@@ -1,14 +1,28 @@
 import calculations.Calculations;
 import calculations.CalculationsInterface;
+import models.PersonModel;
+import org.junit.Assert;
 import org.junit.Test;
 
 public class CalculationsTest {
 
     @Test
-    public void coverTypeCalculations_Test() {
+    public void calculationsTest_17To21AgeRange() {
         CalculationsInterface c = new Calculations();
-        c.coverTypeCalculations("Comprehensive");
+        PersonModel person1 = new PersonModel("Dick Grayson", 21, 3, "Comprehensive");
+        c.calculate(person1);
 
-
+        Assert.assertEquals(person1.getQuote(), 571.2, 0);
     }
+
+    @Test
+    public void calculationsTest_22To24AgeRange() {
+        CalculationsInterface c = new Calculations();
+        PersonModel person1 = new PersonModel("Wally West", 23, 3, "Comprehensive");
+        c.calculate(person1);
+
+        Assert.assertEquals(person1.getQuote(), 436.8, 0);
+    }
+
+
 }
