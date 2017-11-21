@@ -17,8 +17,7 @@ public class AgeRangeModel {
     }
 
     public double ageIncrease(double newPrice) {
-        return newPrice + (newPrice / 100 * percentageAdjustment);
-
+        return newPrice/100 * percentageAdjustment;
     }
 
 }
