@@ -1,6 +1,5 @@
 package models;
 
-
 public class PersonModel {
 
     //TODO: age should be calculated from date of birth.
