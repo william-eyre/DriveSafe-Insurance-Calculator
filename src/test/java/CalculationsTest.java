@@ -18,18 +18,18 @@ public class CalculationsTest {
     @Test
     public void calculationsTest_22To24AgeRange() {
         CalculationsInterface c = new Calculations();
-        PersonModel person1 = new PersonModel("Wally West", 23, 3, "Comprehensive");
-        c.calculate(person1);
+        PersonModel person2 = new PersonModel("Wally West", 23, 3, "Comprehensive");
+        c.calculate(person2);
 
-        Assert.assertEquals(person1.getQuote(), 436.8, 0);
+        Assert.assertEquals(person2.getQuote(), 436.8, 0);
     }
     @Test
     public void calculationsTest_25To35AgeRange() {
         CalculationsInterface c = new Calculations();
-        PersonModel person1 = new PersonModel("Zatana", 30, 3, "Comprehensive");
-        c.calculate(person1);
+        PersonModel person3 = new PersonModel("Zatana", 30, 3, "Comprehensive");
+        c.calculate(person3);
 
-        Assert.assertEquals(person1.getQuote(), 403.2, 0);
+        Assert.assertEquals(person3.getQuote(), 403.2, 0);
     }
 
 
