@@ -14,7 +14,7 @@ public class InsuranceTypeModel {
         return insuranceType;
     }
 
-    public double coverTypeIncrease(double premium) {
-        return premium/100 * percentageModifier;
+    public double coverTypeIncrease(double quote) {
+        return quote/100 * percentageModifier;
     }
 }
