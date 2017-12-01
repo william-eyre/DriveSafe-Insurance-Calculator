@@ -10,9 +10,9 @@ public class Main {
 
         double basePremium = 300;
         CalculationsInterface composite = new CompositeCalculation(
-                new CoverTypeCalculations(),
-                new DriversAgeIncrease(),
-                new NoClaimsDiscount());
+//                new CoverTypeCalculations(),
+                new DriversAgeIncrease());
+//                new NoClaimsDiscount());
 //        Scanner scanner = new Scanner(System.in);
 //        System.out.println("Please enter your name: ");
 //        String name = scanner.next();
@@ -26,7 +26,7 @@ public class Main {
 //        System.out.println("Please enter your years no claims");
 //        int yearsNoClaims = scanner.nextInt();
 
-        PersonModel person = new PersonModel("Will", 20, 3, "Comprehensive");
+        PersonModel person = new PersonModel("Will", 21, 3, "Comprehensive");
 
         String output = String.format("Insurance Quote:  %.2f", composite.calculate(person, basePremium));
         System.out.println(output);
