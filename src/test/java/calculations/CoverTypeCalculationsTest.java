@@ -17,7 +17,7 @@ public class CoverTypeCalculationsTest  {
 
     @Test
     public void comprehensiveTest() throws Exception, InvalidAgeException, InvalidCoverTypeException, InvalidYearsNoClaims {
-        person = new PersonModel("Dr Doom", 30, 5, "Comprehensive");
+        person = new PersonModel("Dr Doom", "09/10/1990", 5, "Comprehensive");
         composite.calculate(person, total);
 
         Assert.assertEquals(person.getQuote(), 420, 0);
@@ -25,7 +25,7 @@ public class CoverTypeCalculationsTest  {
 
     @Test
     public void thirdPartyAndFireTest() throws Exception, InvalidAgeException, InvalidCoverTypeException, InvalidYearsNoClaims {
-        person = new PersonModel("Solomon Grundy", 30, 5, "Third Party & Fire");
+        person = new PersonModel("Solomon Grundy", "12/12/1999", 5, "Third Party & Fire");
         composite.calculate(person, total);
 
         Assert.assertEquals(person.getQuote(), 330, 0);
@@ -33,7 +33,7 @@ public class CoverTypeCalculationsTest  {
 
     @Test
     public void calculate() throws Exception, InvalidAgeException, InvalidCoverTypeException, InvalidYearsNoClaims {
-        person = new PersonModel("Bizaro", 30, 5, "Third Party");
+        person = new PersonModel("Bizaro", "10/05/1995", 5, "Third Party");
         composite.calculate(person, total);
 
         Assert.assertEquals(person.getQuote(), 270, 0);
