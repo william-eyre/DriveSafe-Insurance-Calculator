@@ -1,18 +1,22 @@
 package models;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.temporal.ChronoUnit;
+
 public class PersonModel {
 
-    //TODO: age should be calculated from date of birth.
 
     private String name;
     private int age;
+    private String dateOfBirth;
     private int yearsNoClaims;
     private String insuranceType;
     private double quote;
 
-    public PersonModel(String name, int age, int yearsNoClaims, String insuranceType) {
+    public PersonModel(String name, String dateOfBirth, int yearsNoClaims, String insuranceType) {
         this.name = name;
-        this.age = age;
+        this.dateOfBirth = dateOfBirth;
         this.yearsNoClaims = yearsNoClaims;
         this.insuranceType = insuranceType;
     }
@@ -22,7 +26,7 @@ public class PersonModel {
     }
 
     public int getAge() {
-        return age;
+        return age = (int) ageFromDateOfBirth(dateOfBirth);
     }
 
     public int getYearsNoClaims() {
@@ -41,4 +45,13 @@ public class PersonModel {
         this.quote = quote;
     }
 
+
+    private long ageFromDateOfBirth(String dateOfBirth) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("d/MM/yyyy");
+
+        //convert String to LocalDate
+        LocalDate birthday = LocalDate.parse(dateOfBirth, formatter);
+        LocalDate now = LocalDate.now();
+        return ChronoUnit.YEARS.between(birthday, now);
+    }
 }

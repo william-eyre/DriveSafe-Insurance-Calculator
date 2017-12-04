@@ -16,6 +16,7 @@ public class DriversAgeIncrease implements CalculationsInterface {
         ageBands.add(new AgeRangeModel(22, 24, 30));
         ageBands.add(new AgeRangeModel(25, 35, 20));
         ageBands.add(new AgeRangeModel(36, 55, 10));
+        ageBands.add(new AgeRangeModel(56, 70, 20));
         ageBands.add(new AgeRangeModel(71, 100, 70));
 
         for (AgeRangeModel band : ageBands) {
